@@ -34,9 +34,9 @@ class Tile {
   final int x;
   final int y;
   final int s;
-  String m;
+  int f;
 
-  Tile(this.name, this.x, this.y, this.s, this.m);
+  Tile(this.name, this.x, this.y, this.s, this.f);
 }
 
 class DominoForm extends StatefulWidget {
@@ -55,68 +55,75 @@ class _DominoFormState extends State<DominoForm> {
   int testScore = 0;
 
   List<Tile> bones = [
-    Tile('0-0', 0, 0, 0, ""),
-    Tile('1-0', 1, 0, 0, ""),
-    Tile('1-1', 1, 1, 2, ""),
-    Tile('2-0', 2, 0, 0, ""),
-    Tile('2-1', 2, 1, 0, ""),
-    Tile('2-2', 2, 2, 4, ""),
-    Tile('3-0', 3, 0, 0, ""),
-    Tile('3-1', 3, 1, 0, ""),
-    Tile('3-2', 3, 2, 0, ""),
-    Tile('3-3', 3, 3, 6, ""),
-    Tile('4-0', 4, 0, 0, ""),
-    Tile('4-1', 4, 1, 0, ""),
-    Tile('4-2', 4, 2, 0, ""),
-    Tile('4-3', 4, 3, 0, ""),
-    Tile('4-4', 4, 4, 8, ""),
-    Tile('5-0', 5, 0, 0, ""),
-    Tile('5-1', 5, 1, 0, ""),
-    Tile('5-2', 5, 2, 0, ""),
-    Tile('5-3', 5, 3, 0, ""),
-    Tile('5-4', 5, 4, 0, ""),
-    Tile('5-5', 5, 5, 10, ""),
-    Tile('6-0', 6, 0, 0, ""),
-    Tile('6-1', 6, 1, 0, ""),
-    Tile('6-2', 6, 2, 0, ""),
-    Tile('6-3', 6, 3, 0, ""),
-    Tile('6-4', 6, 4, 0, ""),
-    Tile('6-5', 6, 5, 0, ""),
-    Tile('6-6', 6, 6, 12, ""),
+    Tile('0-0', 0, 0, 0, 0),
+    Tile('1-0', 1, 0, 0, 0),
+    Tile('1-1', 1, 1, 2, 0),
+    Tile('2-0', 2, 0, 0, 0),
+    Tile('2-1', 2, 1, 0, 0),
+    Tile('2-2', 2, 2, 4, 0),
+    Tile('3-0', 3, 0, 0, 0),
+    Tile('3-1', 3, 1, 0, 0),
+    Tile('3-2', 3, 2, 0, 0),
+    Tile('3-3', 3, 3, 6, 0),
+    Tile('4-0', 4, 0, 0, 0),
+    Tile('4-1', 4, 1, 0, 0),
+    Tile('4-2', 4, 2, 0, 0),
+    Tile('4-3', 4, 3, 0, 0),
+    Tile('4-4', 4, 4, 8, 0),
+    Tile('5-0', 5, 0, 0, 0),
+    Tile('5-1', 5, 1, 0, 0),
+    Tile('5-2', 5, 2, 0, 0),
+    Tile('5-3', 5, 3, 0, 0),
+    Tile('5-4', 5, 4, 0, 0),
+    Tile('5-5', 5, 5, 10, 0),
+    Tile('6-0', 6, 0, 0, 0),
+    Tile('6-1', 6, 1, 0, 0),
+    Tile('6-2', 6, 2, 0, 0),
+    Tile('6-3', 6, 3, 0, 0),
+    Tile('6-4', 6, 4, 0, 0),
+    Tile('6-5', 6, 5, 0, 0),
+    Tile('6-6', 6, 6, 12, 0),
   ];
 
   List<Tile> table = [
-    Tile('0', 0, 0, 0, ""),
-    Tile('1', 1, 0, 1, ""),
-    Tile('2', 2, 0, 2, ""),
-    Tile('3', 3, 0, 3, ""),
-    Tile('4', 4, 0, 4, ""),
-    Tile('5', 5, 0, 5, ""),
-    Tile('6', 6, 0, 6, ""),
-    Tile('0-0', 0, 0, 0, ""),
-    Tile('1-1', 1, 1, 2, ""),
-    Tile('2-2', 2, 2, 4, ""),
-    Tile('3-3', 3, 3, 6, ""),
-    Tile('4-4', 4, 4, 8, ""),
-    Tile('5-5', 5, 5, 10, ""),
-    Tile('6-6', 6, 6, 12, ""),
+    Tile('0', 0, 0, 0, 0),
+    Tile('1', 1, 0, 1, 0),
+    Tile('2', 2, 0, 2, 0),
+    Tile('3', 3, 0, 3, 0),
+    Tile('4', 4, 0, 4, 0),
+    Tile('5', 5, 0, 5, 0),
+    Tile('6', 6, 0, 6, 0),
+    Tile('0-0', 0, 0, 0, 0),
+    Tile('1-1', 1, 1, 2, 0),
+    Tile('2-2', 2, 2, 4, 0),
+    Tile('3-3', 3, 3, 6, 0),
+    Tile('4-4', 4, 4, 8, 0),
+    Tile('5-5', 5, 5, 10, 0),
+    Tile('6-6', 6, 6, 12, 0),
   ];
 
   Tile? north, south, west, center, east;
 
-  Tile result = Tile('', 0, 0, 0, "");
-  int maxScore = 0;
-  String pos = '';
+  Tile result = Tile('', 0, 0, 0, 0);
+  Color crBack = Color.fromRGBO(144, 224, 238, 0.25);
+  List<Color> cross = [
+    Color.fromRGBO(144, 224, 238, 0.25),
+    Color.fromRGBO(144, 224, 238, 0.25),
+    Color.fromRGBO(144, 224, 238, 0.25),
+    Color.fromRGBO(144, 224, 238, 0.25),
+    Color.fromRGBO(144, 224, 238, 0.25),
+  ];
   List<Tile> matchList = [];
   List<Tile> tiles = [];
+  int maxScore = 0;
+  int pos = -1;
   int topLength = 0, bottomLength = 0;
   bool _visibleResults = false;
-  String c = "center", n = "north", s = "south", e = "east", w = "west";
 
   void _addPile(Tile tile) {
     if (!tiles.contains(tile)) {
       tiles.add(tile);
-      tile.m = "s";
+      tile.f = 1;
       if (tiles.length <= 8) {
         topLength = tiles.length;
         bottomLength = 0;
@@ -264,7 +271,8 @@ class _DominoFormState extends State<DominoForm> {
     if (testScore % 5 == 0 && testScore > maxScore) {
       maxScore = testScore;
       result = tiles[t];
-      pos = p!.m;
+      pos = p!.f;
+      cross[pos] = Colors.indigo;
     }
   }
 
@@ -275,10 +283,13 @@ class _DominoFormState extends State<DominoForm> {
   }
 
   void _solve() {
-    result = Tile('', 0, 0, 0, "");
-    pos = '';
+    result = Tile('', 0, 0, 0, 0);
+    pos = -1;
     maxScore = 0;
     matchList = [];
+    for (int i = 0; i < 5; i++) {
+      cross[i] = crBack;
+    }
 
     if (center != null) {
       if (west == null && east == null && north == null && south == null) {
@@ -478,6 +489,7 @@ class _DominoFormState extends State<DominoForm> {
           north == null &&
           south != null) {
         // center + west + south + east
+
         for (int t = 0; t < tiles.length; t++) {
           _addY3(t, east, west, south, center);
           _addX3(t, east, west, south, center);
@@ -559,7 +571,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index].m == "s"
+                  icon: bones[index].f == 1
                       ? const SizedBox.shrink()
                       : Image.asset("assets/${bones[index].name}.png",
                           height: iconHeight, width: iconWidth),
@@ -578,9 +590,9 @@ class _DominoFormState extends State<DominoForm> {
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index + 8].m == "s"
+                  icon: bones[index + 8].f == 1
                       ? const SizedBox.shrink()
-                      : Image.asset("assets/${bones[index + 7].name}.png",
+                      : Image.asset("assets/${bones[index + 8].name}.png",
                           height: iconHeight, width: iconWidth),
                   onPressed: () async {
                     _addPile(bones[index + 8]);
@@ -597,7 +609,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index + 18].m == "s"
+                  icon: bones[index + 16].f == 1
                       ? const SizedBox.shrink()
                       : Image.asset("assets/${bones[index + 16].name}.png",
                           height: iconHeight, width: iconWidth),
@@ -616,7 +628,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index + 24].m == "s"
+                  icon: bones[index + 24].f == 1
                       ? const SizedBox.shrink()
                       : Image.asset("assets/${bones[index + 24].name}.png",
                           height: iconHeight, width: iconWidth),
@@ -683,6 +695,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: boxWidth,
                 height: boxHeight,
                 decoration: BoxDecoration(
+                  color: cross[0],
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -702,7 +715,7 @@ class _DominoFormState extends State<DominoForm> {
                     onChanged: (Tile? newValue) {
                       setState(() {
                         north = newValue!;
-                        north?.m = n;
+                        north?.f = 0;
                       });
                     },
                   ),
@@ -717,6 +730,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: boxWidth,
                 height: boxHeight,
                 decoration: BoxDecoration(
+                  color: cross[1],
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -736,7 +750,7 @@ class _DominoFormState extends State<DominoForm> {
                       onChanged: (Tile? newValue) {
                         setState(() {
                           west = newValue!;
-                          west?.m = w;
+                          west?.f = 1;
                         });
                       }),
                 ),
@@ -745,6 +759,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: boxWidth,
                 height: boxHeight,
                 decoration: BoxDecoration(
+                  color: cross[2],
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -764,7 +779,7 @@ class _DominoFormState extends State<DominoForm> {
                       onChanged: (Tile? newValue) {
                         setState(() {
                           center = newValue!;
-                          center?.m = c;
+                          center?.f = 2;
                         });
                       }),
                 ),
@@ -773,6 +788,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: boxWidth,
                 height: boxHeight,
                 decoration: BoxDecoration(
+                  color: cross[3],
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -792,7 +808,7 @@ class _DominoFormState extends State<DominoForm> {
                       onChanged: (Tile? newValue) {
                         setState(() {
                           east = newValue!;
-                          east?.m = e;
+                          east?.f = 3;
                         });
                       }),
                 ),
@@ -806,6 +822,7 @@ class _DominoFormState extends State<DominoForm> {
                 width: boxWidth,
                 height: boxHeight,
                 decoration: BoxDecoration(
+                  color: cross[4],
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5),
                 ),
@@ -825,7 +842,7 @@ class _DominoFormState extends State<DominoForm> {
                       onChanged: (Tile? newValue) {
                         setState(() {
                           south = newValue!;
-                          south?.m = s;
+                          south?.f = 4;
                         });
                       }),
                 ),
@@ -858,7 +875,7 @@ class _DominoFormState extends State<DominoForm> {
                 ),
                 Text(
                   style: const TextStyle(fontSize: 20, color: Colors.green),
-                  ' Score $maxScore - $pos',
+                  ' Score $maxScore',
                 ),
                 Center(
                   child: result.name != ''
