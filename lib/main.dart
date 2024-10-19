@@ -47,8 +47,8 @@ class DominoForm extends StatefulWidget {
 }
 
 class _DominoFormState extends State<DominoForm> {
-  double iconWidth = width / 8.0;
-  double iconHeight = width * 1.5 / 8.0;
+  double iconWidth = width / 9.0;
+  double iconHeight = width * 1.5 / 9.0;
   double boxWidth = 50.0;
   double boxHeight = 40.0;
 
@@ -117,12 +117,12 @@ class _DominoFormState extends State<DominoForm> {
     if (!tiles.contains(tile)) {
       tiles.add(tile);
       tile.m = "s";
-      if (tiles.length <= 11) {
+      if (tiles.length <= 8) {
         topLength = tiles.length;
         bottomLength = 0;
       } else {
-        topLength = 11;
-        bottomLength = tiles.length - 11;
+        topLength = 8;
+        bottomLength = tiles.length - 8;
       }
       setState(() {});
     }
@@ -130,12 +130,12 @@ class _DominoFormState extends State<DominoForm> {
 
   void _deletePile(Tile tile) {
     tiles.remove(tile);
-    if (tiles.length <= 11) {
+    if (tiles.length <= 8) {
       topLength = tiles.length;
       bottomLength = 0;
     } else {
-      topLength = 11;
-      bottomLength = tiles.length - 11;
+      topLength = 8;
+      bottomLength = tiles.length - 8;
     }
     setState(() {});
   }
@@ -553,7 +553,7 @@ class _DominoFormState extends State<DominoForm> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(7, (index) {
+            children: List.generate(8, (index) {
               return Container(
                 padding: const EdgeInsets.all(0.0),
                 width: iconWidth,
@@ -572,18 +572,18 @@ class _DominoFormState extends State<DominoForm> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(7, (index) {
+            children: List.generate(8, (index) {
               return Container(
                 padding: const EdgeInsets.all(0.0),
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index + 7].m == "s"
+                  icon: bones[index + 8].m == "s"
                       ? const SizedBox.shrink()
                       : Image.asset("assets/${bones[index + 7].name}.png",
                           height: iconHeight, width: iconWidth),
                   onPressed: () async {
-                    _addPile(bones[index + 7]);
+                    _addPile(bones[index + 8]);
                   },
                 ),
               );
@@ -591,18 +591,18 @@ class _DominoFormState extends State<DominoForm> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(7, (index) {
+            children: List.generate(8, (index) {
               return Container(
                 padding: const EdgeInsets.all(0.0),
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index + 14].m == "s"
+                  icon: bones[index + 18].m == "s"
                       ? const SizedBox.shrink()
-                      : Image.asset("assets/${bones[index + 14].name}.png",
+                      : Image.asset("assets/${bones[index + 16].name}.png",
                           height: iconHeight, width: iconWidth),
                   onPressed: () async {
-                    _addPile(bones[index + 14]);
+                    _addPile(bones[index + 16]);
                   },
                 ),
               );
@@ -610,18 +610,18 @@ class _DominoFormState extends State<DominoForm> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(7, (index) {
+            children: List.generate(4, (index) {
               return Container(
                 padding: const EdgeInsets.all(0.0),
                 width: iconWidth,
                 child: IconButton(
                   padding: EdgeInsets.zero,
-                  icon: bones[index + 21].m == "s"
+                  icon: bones[index + 24].m == "s"
                       ? const SizedBox.shrink()
-                      : Image.asset("assets/${bones[index + 21].name}.png",
+                      : Image.asset("assets/${bones[index + 24].name}.png",
                           height: iconHeight, width: iconWidth),
                   onPressed: () async {
-                    _addPile(bones[index + 21]);
+                    _addPile(bones[index + 24]);
                   },
                 ),
               );
@@ -661,7 +661,7 @@ class _DominoFormState extends State<DominoForm> {
                   width: iconWidth,
                   child: IconButton(
                     padding: EdgeInsets.zero,
-                    icon: Image.asset("assets/${tiles[inx + 11].name}.png",
+                    icon: Image.asset("assets/${tiles[inx + 8].name}.png",
                         height: iconHeight, width: iconWidth),
                     onPressed: () {
                       _deletePile(tiles[inx]);
