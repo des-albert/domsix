@@ -105,13 +105,13 @@ class _DominoFormState extends State<DominoForm> {
   Tile? north, south, west, center, east;
 
   Tile result = Tile('', 0, 0, 0, 0);
-  Color crBack = Color.fromRGBO(144, 224, 238, 0.25);
+  Color crBack = const Color.fromRGBO(144, 224, 238, 0.25);
   List<Color> cross = [
-    Color.fromRGBO(144, 224, 238, 0.25),
-    Color.fromRGBO(144, 224, 238, 0.25),
-    Color.fromRGBO(144, 224, 238, 0.25),
-    Color.fromRGBO(144, 224, 238, 0.25),
-    Color.fromRGBO(144, 224, 238, 0.25),
+    const Color.fromRGBO(144, 224, 238, 0.25),
+    const Color.fromRGBO(144, 224, 238, 0.25),
+    const Color.fromRGBO(144, 224, 238, 0.25),
+    const Color.fromRGBO(144, 224, 238, 0.25),
+    const Color.fromRGBO(144, 224, 238, 0.25),
   ];
   List<Tile> matchList = [];
   List<Tile> tiles = [];
