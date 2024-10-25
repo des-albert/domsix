@@ -684,7 +684,7 @@ class _DominoFormState extends State<DominoForm> {
           ),
           const Divider(
             color: Colors.blue,
-            height: 5,
+            height: 10,
             thickness: 0,
             indent: 5,
             endIndent: 5,
@@ -856,7 +856,7 @@ class _DominoFormState extends State<DominoForm> {
               children: [
                 const Divider(
                   color: Colors.blue,
-                  height: 5,
+                  height: 10,
                   thickness: 0,
                   indent: 5,
                   endIndent: 5,
